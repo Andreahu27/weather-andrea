@@ -21,14 +21,6 @@ const AppProvider = ({ children }) => {
     const [localTime, setLocalTime] = useState(false)
     const [nightChecked, setNightChecked] = useState(false);
 
-    // const apiKey = "335914cdce61ce61b0a1d89e99c3a822"
-
-    // console.log(apiKey)
-
-
-
-
-
     const [isDisplaying, setIsDisplaying] = useState(false)
     const [weatherData, setWeatherData] = useState({})
 
