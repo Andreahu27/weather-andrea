@@ -59,7 +59,7 @@ const AppProvider = ({ children }) => {
         }
         
         // const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=335914cdce61ce61b0a1d89e99c3a822&units=metric`
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`
         const res = await axios.get(url)
         const data = await res.data
 
@@ -87,7 +87,7 @@ const AppProvider = ({ children }) => {
         const {lon, lat} = coordObj
 
         // const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=335914cdce61ce61b0a1d89e99c3a822&units=metric`
-        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
 
         const res = await axios.get(url)
         const data = await res.data

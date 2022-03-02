@@ -70,7 +70,7 @@ const Weather = () => {
                 <ControlledSwitches/>
 
                 
-                <p>{localTime ? (weatherData.timezone) : "Europe"}</p>
+                {/* <p>{localTime ? (weatherData.timezone) : "Europe"}</p> */}
             </div>
 
             <div className="icon-and-temp">

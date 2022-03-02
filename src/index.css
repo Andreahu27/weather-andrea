@@ -69,11 +69,13 @@ h1 {
 .search-btn {
   background-color: rgba(250, 250, 250, 0);
   border: none;
-  margin-left: -60px;
+  border: 1px solid white;
+  border-radius: 50%;
+  background: white;
+  margin-left: 2px;
 }
 
 .geo-btn {
-  margin-left: 0px;
 }
 
 .search-btn:hover {
@@ -237,7 +239,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   min-width: 100px;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .hour-card p {
@@ -369,7 +371,7 @@ h1 {
   }
 
   .cw-summary {
-    flex: 2;
+    flex: 3.5;
   }
 
   .night-switch {
