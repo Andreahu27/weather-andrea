@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContextGlobal } from "./Context";
+import Home from "./Home"
+import Weather from "./Weather";
+
+const apiKey = process.env.REACT_APP_API_KEY
+
+    
+
 
 function App() {
+
+  const {search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, weatherData} = useContextGlobal()
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    <>
+
+    <Home />
+
+    {isDisplaying && (<Weather />)
+    
+    }
+
+  </>
+
+
+  )
+
+
 }
 
 export default App;
+
+export {apiKey}
