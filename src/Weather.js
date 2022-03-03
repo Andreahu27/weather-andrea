@@ -75,8 +75,8 @@ const Weather = () => {
 
             <div className="icon-and-temp">
                 {/* <img className="cw-icon" src={("http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png")} alt="xx" /> */}
-                {/* <img className="cw-icon" src={require(`./assets/IMGs/${weatherData.current.weather[0].icon}.png`)} alt="xx" /> */}
-                <img className="cw-icon" src={require(`./assets/IMGs/04d.png`)} alt="xx" />
+                <img className="cw-icon" src={require(`./assets/IMGs/${weatherData.current.weather[0].icon}.png`)} alt="xx" />
+                {/* <img className="cw-icon" src={require(`./assets/IMGs/04d.png`)} alt="xx" /> */}
                     <div className="dec-and-curr-temp">
                         <div className={nightChecked ? "description gray-color" : "description"}   >{weatherData.current.weather[0].description}</div>
                         <div className={nightChecked ? "cw-curr-temp light-blue-color" : "cw-curr-temp"}>{Math.round(weatherData.current.temp *10)/10} °C</div>
@@ -116,7 +116,8 @@ const Weather = () => {
                         return (
                     <div className="hour-card" key={idx}>
                             <p>{localTime ? getTimeFromNum(hour.dt+ weatherData.timezone_offset - 3600) : getTimeFromNum(hour.dt)}</p>
-                        <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + hour.weather[0].icon + "@2x.png"} alt="xx" />
+                        {/* <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + hour.weather[0].icon + "@2x.png"} alt="xx" /> */}
+                        <img className="hour-icon" src={require(`./assets/IMGs/${hour.weather[0].icon}.png`)} alt="xx" />
                         <p>{Math.round(hour.temp *10)/10}°C</p>
                         <p>{hour.weather[0].description}</p>
 
@@ -140,7 +141,8 @@ const Weather = () => {
                         return (
                     <div className="hour-card" key={idx}>
                             <p>{getDateFromNum(day.dt)}</p>
-                        <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + day.weather[0].icon + "@2x.png"} alt="xx" />
+                        {/* <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + day.weather[0].icon + "@2x.png"} alt="xx" /> */}
+                        <img className="hour-icon" src={require(`./assets/IMGs/${day.weather[0].icon}.png`)} alt="xx" />
                         <p>{Math.round(day.temp.min *10)/10} | {Math.round(day.temp.max *10)/10} °C</p>
                         <p>{day.weather[0].description}</p>
                     </div>
