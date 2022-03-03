@@ -115,7 +115,7 @@ const AppProvider = ({ children }) => {
 
           const options = {
             enableHighAccuracy: false,
-            timeout: 4000,
+            timeout: 5000,
             maximumAge: 0
           };
 
@@ -124,6 +124,7 @@ const AppProvider = ({ children }) => {
           }
                 
         navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
+        setIsLoading(false)
 
     }
 

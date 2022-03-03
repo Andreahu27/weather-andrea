@@ -110,9 +110,9 @@ const Weather = () => {
         </div>
 
         <div className="hourly-container">
-                    {weatherData.hourly.slice(0,24).map(hour => {
+                    {weatherData.hourly.slice(0,24).map((hour, idx) => {
                         return (
-                    <div className="hour-card">
+                    <div className="hour-card" key={idx}>
                             <p>{localTime ? getTimeFromNum(hour.dt+ weatherData.timezone_offset - 3600) : getTimeFromNum(hour.dt)}</p>
                         <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + hour.weather[0].icon + "@2x.png"} alt="xx" />
                         <p>{Math.round(hour.temp *10)/10}°C</p>
@@ -134,9 +134,9 @@ const Weather = () => {
         </div>
 
         <div className="hourly-container">
-                    {weatherData.daily.map(day => {
+                    {weatherData.daily.map((day, idx) => {
                         return (
-                    <div className="hour-card">
+                    <div className="hour-card" key={idx}>
                             <p>{getDateFromNum(day.dt)}</p>
                         <img className="hour-icon" src={"http://openweathermap.org/img/wn/" + day.weather[0].icon + "@2x.png"} alt="xx" />
                         <p>{Math.round(day.temp.min *10)/10} | {Math.round(day.temp.max *10)/10} °C</p>
