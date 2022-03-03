@@ -74,7 +74,9 @@ const Weather = () => {
             </div>
 
             <div className="icon-and-temp">
-                <img className="cw-icon" src={("http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png")} alt="xx" />
+                {/* <img className="cw-icon" src={("http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png")} alt="xx" /> */}
+                {/* <img className="cw-icon" src={require(`./assets/IMGs/${weatherData.current.weather[0].icon}.png`)} alt="xx" /> */}
+                <img className="cw-icon" src={require(`./assets/IMGs/04d.png`)} alt="xx" />
                     <div className="dec-and-curr-temp">
                         <div className={nightChecked ? "description gray-color" : "description"}   >{weatherData.current.weather[0].description}</div>
                         <div className={nightChecked ? "cw-curr-temp light-blue-color" : "cw-curr-temp"}>{Math.round(weatherData.current.temp *10)/10} °C</div>
