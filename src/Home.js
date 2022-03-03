@@ -8,7 +8,7 @@ const Home = () => {
 
 
     const {search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, 
-          weatherData, setisCitySelected,handleSubmitLocal,isLoading, setIsLoading,
+          weatherData, setisCitySelected,handleSubmitLocal,isLoading, setIsLoading,setIsLocalRequested,
           nightChecked, setNightChecked, handleClickLocal} = useContextGlobal()
 
 
@@ -89,9 +89,9 @@ const Home = () => {
         onClick={(e) => {
 
           setIsLoading(true)
-
           e.preventDefault()
           handleClickLocal()
+          setIsLocalRequested(prevV => prevV +1)
   
         }
       }>
