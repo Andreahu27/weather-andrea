@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
     const [citiesList, setCities] = useState([])
     const [search, setSearch] = useState([])
     const [isCitySelected, setisCitySelected] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [localTime, setLocalTime] = useState(false)
     const [nightChecked, setNightChecked] = useState(false);
@@ -45,6 +46,7 @@ const AppProvider = ({ children }) => {
     const handleSubmit = async () => {
 
         if (search.length > 0) {
+        setIsLoading(true)
 
         let query=""
         
@@ -72,11 +74,14 @@ const AppProvider = ({ children }) => {
         setWeatherData({...dataDetails, data})
         setIsDisplaying(true)
         setSearch("")
+        setIsLoading(false)
         }
     }
 
 
     const handleSubmitLocal = async(pos) => {
+
+        setIsLoading(true)
 
         const {coords} = pos;
 
@@ -101,7 +106,28 @@ const AppProvider = ({ children }) => {
         setWeatherData({...dataDetails, data})
         setIsDisplaying(true)
         setSearch("")
+        setIsLoading(false)
     }
+
+    const handleClickLocal = async () => {
+
+        setIsLoading(true)
+
+          const options = {
+            enableHighAccuracy: false,
+            timeout: 4000,
+            maximumAge: 0
+          };
+
+          const error = (err) => {
+            console.log(err)
+          }
+                
+        navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
+
+    }
+
+
 
 
 
@@ -129,7 +155,7 @@ const AppProvider = ({ children }) => {
         <AppContext.Provider value={{
             search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, 
             weatherData,setisCitySelected, localTime, setLocalTime, handleSubmitLocal,
-            nightChecked, setNightChecked
+            nightChecked, setNightChecked, isLoading, setIsLoading, handleClickLocal
         }}
         >{children}
         </AppContext.Provider>

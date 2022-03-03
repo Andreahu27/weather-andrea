@@ -8,8 +8,8 @@ const Home = () => {
 
 
     const {search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, 
-          weatherData, setisCitySelected,handleSubmitLocal,
-          nightChecked, setNightChecked} = useContextGlobal()
+          weatherData, setisCitySelected,handleSubmitLocal,isLoading, setIsLoading,
+          nightChecked, setNightChecked, handleClickLocal} = useContextGlobal()
 
 
  
@@ -18,19 +18,29 @@ const Home = () => {
 
     
 
+    if (isLoading) {return (
+
+        <div className={nightChecked ? "home-form black-background" : "home-form"} >
 
 
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
 
-    const error = (err) => {
-      console.log(err)
-    }
+        <div className="title">
+          <h1 className={nightChecked ? "light-blue-color" : "null"}>Weather app </h1>
+          <div className="night-switch">
+            <p className={nightChecked ? "gray-color" : "null"} >Night<br/>mode</p>
+            <NightmodeSwitch/>
+          </div>
+        </div>
 
-    return (
+        <h1>Loading</h1>
+
+        </div>
+
+    )}
+
+
+
+    else {return (
     <>
 
     <div className={nightChecked ? "home-form black-background" : "home-form"} >
@@ -67,21 +77,39 @@ const Home = () => {
         className={nightChecked ? "dark-blue" : "null"}
       />
 
-      <button className="search-btn" onClick={(e) => {
+      <button className={nightChecked ? "search-btn dark-search-btn" : "search-btn"} onClick={(e) => {
         e.preventDefault()
         handleSubmit()
         }
       }>
-      <FaSearch className="search-icon"/>
+      <FaSearch className={nightChecked ? "search-icon dark-search-icon" : "search-icon"}/>
       </button>
 
-      <button className="search-btn geo-btn" onClick={(e) => {
-        e.preventDefault()
-        navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
+      <button className={nightChecked ? "search-btn geo-btn dark-search-btn" : "search-btn geo-btn"}
+        onClick={(e) => {
+
+          e.preventDefault()
+          handleClickLocal()
+
+  
+
+        //   const options = {
+        //     enableHighAccuracy: false,
+        //     timeout: 4000,
+        //     maximumAge: 0
+        //   };
+
+        //   const error = (err) => {
+        //     console.log(err)
+        //   }
+        
+        
+        // navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
+
   
         }
       }>
-      <FaMapMarkerAlt className="search-icon"/>
+      <FaMapMarkerAlt className={nightChecked ? "search-icon dark-search-icon" : "search-icon"}/>
       </button>
 
     </form>
@@ -110,6 +138,7 @@ const Home = () => {
 
     </>)
 
+}
 }
 
 export default Home
