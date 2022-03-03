@@ -81,7 +81,6 @@ const AppProvider = ({ children }) => {
 
     const handleSubmitLocal = async(pos) => {
 
-        setIsLoading(true)
 
         const {coords} = pos;
 
@@ -111,7 +110,7 @@ const AppProvider = ({ children }) => {
 
     const handleClickLocal = async () => {
 
-        setIsLoading(true)
+        
 
           const options = {
             enableHighAccuracy: false,
@@ -124,7 +123,7 @@ const AppProvider = ({ children }) => {
           }
                 
         navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
-        setIsLoading(false)
+        
 
     }
 

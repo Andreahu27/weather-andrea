@@ -88,24 +88,10 @@ const Home = () => {
       <button className={nightChecked ? "search-btn geo-btn dark-search-btn" : "search-btn geo-btn"}
         onClick={(e) => {
 
+          setIsLoading(true)
+
           e.preventDefault()
           handleClickLocal()
-
-  
-
-        //   const options = {
-        //     enableHighAccuracy: false,
-        //     timeout: 4000,
-        //     maximumAge: 0
-        //   };
-
-        //   const error = (err) => {
-        //     console.log(err)
-        //   }
-        
-        
-        // navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
-
   
         }
       }>
