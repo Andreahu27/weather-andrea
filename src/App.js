@@ -1,6 +1,7 @@
 import { useContextGlobal } from "./Context";
 import Home from "./Home"
 import Weather from "./Weather";
+import Error from "./Error";
 
 const apiKey = process.env.REACT_APP_API_KEY
 
@@ -9,7 +10,7 @@ const apiKey = process.env.REACT_APP_API_KEY
 
 function App() {
 
-  const {search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, weatherData} = useContextGlobal()
+  const {search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, weatherData, isError} = useContextGlobal()
 
 
 
@@ -21,9 +22,11 @@ function App() {
 
     <Home />
 
-    {isDisplaying && (<Weather />)
+    {isDisplaying && (!isError) && (<Weather />)
     
     }
+
+    {isError && (<Error />)}
 
   </>
 

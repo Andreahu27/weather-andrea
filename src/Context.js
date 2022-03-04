@@ -19,6 +19,7 @@ const AppProvider = ({ children }) => {
     const [isCitySelected, setisCitySelected] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isLocalRequested, setIsLocalRequested] = useState(0)
+    const [isError, setIsError] = useState(false)
 
     const [localTime, setLocalTime] = useState(false)
     const [nightChecked, setNightChecked] = useState(false);
@@ -46,6 +47,8 @@ const AppProvider = ({ children }) => {
 
     const handleSubmit = async () => {
 
+
+
         if (search.length > 0) {
         setIsLoading(true)
 
@@ -61,21 +64,31 @@ const AppProvider = ({ children }) => {
             query = search.replaceAll(' ','%20')
         }
         
-        // const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=335914cdce61ce61b0a1d89e99c3a822&units=metric`
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`
-        const res = await axios.get(url)
-        const data = await res.data
+        try {
+            setIsError(false)
 
-        const {lon, lat} = data.coord
-        // const urlDetails = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=335914cdce61ce61b0a1d89e99c3a822&units=metric`
-        const urlDetails = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
-        const resDetails = await axios.get(urlDetails)
-        const dataDetails = await resDetails.data
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`
+            const res = await axios.get(url)
+            const data = await res.data
 
-        setWeatherData({...dataDetails, data})
-        setIsDisplaying(true)
-        setSearch("")
-        setIsLoading(false)
+
+
+            const {lon, lat} = data.coord
+            // const urlDetails = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=335914cdce61ce61b0a1d89e99c3a822&units=metric`
+            const urlDetails = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+            const resDetails = await axios.get(urlDetails)
+            const dataDetails = await resDetails.data
+
+            setWeatherData({...dataDetails, data})
+            setIsDisplaying(true)
+            setSearch("")
+            setIsLoading(false)
+        } 
+        catch (e) {
+            setIsLoading(false)
+            setSearch("")
+            setIsError(true)
+        }  
         }
     }
 
@@ -109,6 +122,10 @@ const AppProvider = ({ children }) => {
 
     const handleClickLocal = async () => {
 
+        try {
+
+                setIsError(false)
+
           const options = {
             enableHighAccuracy: false,
             timeout: 7000,
@@ -121,10 +138,17 @@ const AppProvider = ({ children }) => {
                 
         navigator.geolocation.getCurrentPosition(handleSubmitLocal, error, options)
 
+        } 
+        catch (e) {
+            setIsLoading(false)
+            setSearch("")
+            setIsError(true)
+        }
 
-        
+        }  
 
-    }
+
+    
 
 
 
@@ -155,7 +179,8 @@ const AppProvider = ({ children }) => {
         <AppContext.Provider value={{
             search, setSearch, citiesList, handleSubmit, isDisplaying, setIsDisplaying, 
             weatherData,setisCitySelected, localTime, setLocalTime, handleSubmitLocal,
-            nightChecked, setNightChecked, isLoading, setIsLoading, handleClickLocal, setIsLocalRequested
+            nightChecked, setNightChecked, isLoading, setIsLoading, handleClickLocal, setIsLocalRequested,
+            isError
         }}
         >{children}
         </AppContext.Provider>
